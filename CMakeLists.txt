@@ -4,11 +4,11 @@ set (PROJECT_NAME "hip-thrust")
 
 project(${PROJECT_NAME})
 
-# If debug, add explicitly add -O0 optimization to override built-in -O3 optimization of HIP compiler
+# Define -On optimization flags for debug and release builds 
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -Wextra -Wno-unused-function")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Og -Wall -Wextra -Wno-unused-function")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-function")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -Wno-unused-function")
 endif()
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/thrust/ DESTINATION include/thrust USE_SOURCE_PERMISSIONS)
